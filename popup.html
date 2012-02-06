@@ -1,0 +1,232 @@
+<style>
+    body{
+        min-width:250px;
+        overflow-x:hidden;
+        font-family: arial, sans-serif;
+        font-size: small;
+        padding: 0;
+    	margin: 0;
+    }
+    .option, .optionHighlight{
+    	clear: both;
+        margin:5px;
+        padding-left: 5px;
+        padding-right: 5px;
+        padding-top: 2px;
+        height: 20px;
+        vertical-align:middle;
+        color: black;
+        cursor: pointer;
+        min-width: 200px;
+        white-space: nowrap;
+    }
+    .optionHighlight{
+        background-color: highlight;
+        color: white;
+    }
+    .leftMenuItem{
+    	float: left;
+    	white-space: nowrap;
+		text-overflow: ellipsis;
+		margin-right: 10px;
+    }
+    .rightMenuItem{
+    	float: right;
+    	margin-left: 10px;
+    }
+    .disabled {
+    	color: gray;
+    }
+</style>
+
+<script type="text/javascript" src="options.js"></script>
+<script>
+	const AUTHORIZATION = createOptionElement('');
+	const BACKGROUND = chrome.extension.getBackgroundPage();
+
+	function changeClass(el, className){
+		el.className = className;
+	}
+
+	function addClass(ele, cls) {
+		if (!this.hasClass(ele,cls)) ele.className += " "+cls;
+	}
+
+	function hasClass(ele, cls) {
+		return ele.className.match(new RegExp('(\\s|^)'+cls+'(\\s|$)'));
+	}
+
+	function removeClass(ele, cls) {
+		if (hasClass(ele,cls)) {
+			var reg = new RegExp('(\\s|^)'+cls+'(\\s|$)');
+			ele.className=ele.className.replace(reg,' ');
+		}
+	}
+
+	function createOptions(){
+		var container = document.createElement('div');
+		var shortcuts = BACKGROUND.getCurrentOptions();
+		var getMessage = chrome.i18n.getMessage;
+		container.appendChild(createOption(getMessage('hideAllOption'), 'collapse', shortcuts['collapse']));
+		container.appendChild(createOption(getMessage('showAllOption'), 'expand', shortcuts['expand']));
+		container.appendChild(createOption(getMessage('hideAllInsideOption'), 'hideAllInlineReplies', shortcuts['hideAllInlineReplies']));
+		container.appendChild(createOption(getMessage('showAllInsideOption'), 'showAllInlineReplies', shortcuts['showAllInlineReplies']));
+		container.appendChild(createOption(getMessage('copyLinkOption'), 'copyLink', shortcuts['copyLink']));
+		container.appendChild(createOption(getMessage('pasteLinkOption'), 'pasteLink', shortcuts['pasteLink']));
+		/*container.appendChild(createOption('Edit'), 'editBlip');
+		container.appendChild(createOption('Reply'), 'replyBlip');
+		container.appendChild(createOption('Indented reply'));
+		container.appendChild(createOption('Continue thread'));
+		container.appendChild(createOption('Insert above'));
+		container.appendChild(createOption('Private reply'));*/
+		/*container.appendChild(createOption('Link to blip'));
+		container.appendChild(createOption('Copy message to new wave...'));*/
+		container.appendChild(createOption(getMessage('deleteMessageOption'), 'deleteMessage', shortcuts['deleteMessage']));
+		container.appendChild(createOption(getMessage('minimizeOption'), 'minimize', shortcuts['minimize']));
+		
+		shortcuts = BACKGROUND.getCopyOptions();
+		container.appendChild(createBackgroundOption(getMessage('copyBlipOption'), shortcuts['copyBlip'], function(){
+			chrome.tabs.getSelected(null, function(tab){
+				chrome.tabs.sendRequest(tab.id, {greeting: 'getLinkToMessage'}, function(link){
+					window.close();
+		    		BACKGROUND.addLink(link);
+				});
+			});
+		}));
+		container.appendChild(createBackgroundOption(getMessage('pasteBlipOption'), shortcuts['pasteBlip'], function(){
+			chrome.tabs.getSelected(null, function(tab){
+				chrome.tabs.sendRequest(tab.id, {greeting: 'getLinkToMessage'}, function(link){
+					chrome.extension.sendRequest({greeting: 'copyBlips', link: link}, function(){
+					});
+					window.close();
+				});
+			});
+		}));
+		
+		var exportOption = createBackgroundOption(getMessage('exportToRizzomaOption'), null, function() {
+			if (!hasClass(exportOption, 'disabled')) {
+				chrome.tabs.getSelected(null, function(tab){
+					chrome.tabs.sendRequest(tab.id, {greeting: 'getLinkToMessage'}, function(link){
+						window.close();
+						BACKGROUND.exportWaveToRizzoma(link);
+					});
+				});
+			}
+		});
+
+		addClass(exportOption, 'disabled');
+		container.appendChild(exportOption);
+		chrome.tabs.getSelected(null, function(tab) {
+			if (tab.url.indexOf('https://wave.google.com/wave/') == -1) {
+				exportOption.firstChild.textContent = getMessage('exportToRizzomaOption') + ' (' + getMessage('wrongActiveTab') + ')';
+				return;
+			}
+			
+			BACKGROUND.pingRizzomaImportService(
+				function (resp) {
+					var respObj = JSON.parse(resp);
+					var message = '';
+					if (respObj.type == 'info') {
+						removeClass(exportOption, 'disabled');
+						exportOption.firstChild.textContent = getMessage('exportToRizzomaOption')
+					} else {
+						switch(respObj.message) {
+							case "AuthError":
+								message = getMessage('rizzomaNotAuthorized');
+								var authRizzomaOption = createBackgroundOption("\u00A0\u00A0\u00A0 - " + getMessage('authorizeOnRizzoma'), null, function() {
+									window.open('http://rizzoma.com/auth/google/')
+									window.close();
+								});
+								if (exportOption.nextSibling) {
+									container.insertBefore(authRizzomaOption, exportOption.nextSibling);
+								} else {
+									container.appendChild(authRizzomaOption);
+								}
+								break;
+							case "LimitExceededError":
+								message = getMessage('rizzomaLimitExceeded');
+								break;
+						}
+						exportOption.firstChild.textContent = getMessage('exportToRizzomaOption') + ' (' + message + ')';
+					}
+				}, function (err) {
+					exportOption.firstChild.textContent = getMessage('exportToRizzomaOption') + ' (' + getMessage('rizzomaServiceUnavailable') + ')';
+				});
+		});
+		return container;
+	}
+	
+	function createBackgroundOption(optionName, shortcut, callback){
+		var option = createOptionElement(optionName, shortcut);
+		option.addEventListener('click', function(){
+			callback();
+		});
+		return option;
+	}
+	
+	function createOption(optionName, message, shortcut){
+		var option = createOptionElement(optionName, shortcut);
+		option.addEventListener('click', function(){
+			chrome.tabs.getSelected(null, function(tab){
+		    	chrome.tabs.sendRequest(tab.id, {greeting: message}, function(response){
+		        	window.close();
+				});
+			});
+		});
+		return option;
+	}
+	
+	function createOptionElement(textContent, shortcut){
+		var optionLine = document.createElement('div');
+		optionLine.setAttribute('class', 'optionContainer');
+		optionLine.className = 'option';
+		optionLine.addEventListener('mouseover', function(){
+			addClass(optionLine, 'optionHighlight');
+		});
+		optionLine.addEventListener('mouseout', function(){
+			removeClass(optionLine, 'optionHighlight');
+		});
+		var option = document.createElement('div');
+		option.setAttribute('class', 'leftMenuItem');
+		option.textContent = textContent;
+		optionLine.appendChild(option);
+		if(shortcut){
+			var str = getShortcutString(shortcut);
+			str = str.replace(/[\'\s]/g, '');
+			//str = str.replace(/[ ]+/, '');
+			option = document.createElement('div');
+			option.setAttribute('class', 'rightMenuItem');
+			option.textContent = str;
+			optionLine.appendChild(option);
+		}
+		return optionLine;
+	}
+	
+	function showOptions(){
+		if(document.body == null){
+			setTimeout(showOptions, 10);
+		}
+		else{
+			var container = createOptions();
+			container.appendChild(AUTHORIZATION)
+			document.body.appendChild(container);
+		}
+	}
+	
+	if (BACKGROUND.robot.hasToken()) {
+		AUTHORIZATION.innerHTML = chrome.i18n.getMessage('signOutOption');
+		//AUTHORIZATION.textContent += 'out';
+		AUTHORIZATION.onclick = function() {
+			BACKGROUND.signOut();
+			window.close();
+		};
+	} else {
+		//AUTHORIZATION.textContent += 'in';
+		AUTHORIZATION.innerHTML = chrome.i18n.getMessage('signInOption');
+		AUTHORIZATION.onclick = function() {
+			BACKGROUND.signIn();
+			window.close();
+		};
+	}
+	showOptions();
+</script>

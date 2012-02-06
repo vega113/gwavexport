@@ -1,0 +1,42 @@
+ParamsProperty = function(){};
+
+ParamsProperty.WAVE_ID = 'waveId';
+ParamsProperty.WAVELET_ID = 'waveletId';
+ParamsProperty.BLIP_ID = 'blipId';
+
+// Operation specific parameters.
+ParamsProperty.ANNOTATION = 'annotation';
+ParamsProperty.BLIP_AUTHOR = 'blipAuthor';
+ParamsProperty.BLIP_CREATION_TIME = 'blipCreationTime';
+ParamsProperty.BLIP_DATA = 'blipData';
+ParamsProperty.BLIPS = 'blips';
+ParamsProperty.CAPABILITIES_HASH = 'capabilitiesHash';
+ParamsProperty.CHILD_BLIP_ID = 'childBlipId';
+ParamsProperty.CONTENT = 'content';
+ParamsProperty.DATADOC_NAME = 'datadocName';
+ParamsProperty.DATADOC_VALUE = 'datadocValue';
+ParamsProperty.DATADOC_WRITEBACK = 'datadocWriteback';
+ParamsProperty.ELEMENT = 'element';
+ParamsProperty.FETCH_PROFILES_REQUEST = 'fetchProfilesRequest';
+ParamsProperty.FETCH_PROFILES_RESULT = 'fetchProfilesResult';
+ParamsProperty.INDEX = 'index';
+ParamsProperty.LANGUAGE = 'language';
+ParamsProperty.MESSAGE = 'message';
+ParamsProperty.MODIFY_ACTION = 'modifyAction';
+ParamsProperty.MODIFY_HOW = 'modifyHow';
+ParamsProperty.MODIFY_QUERY = 'modifyQuery';
+ParamsProperty.NAME = 'name';
+ParamsProperty.NEW_BLIP_ID = 'newBlipId';
+ParamsProperty.NUM_RESULTS = 'numResults';
+ParamsProperty.PARTICIPANT_ID = 'participantId';
+ParamsProperty.PARTICIPANT_PROFILE = 'participantProfile';
+ParamsProperty.PARTICIPANT_ROLE = 'participantRole';
+ParamsProperty.PROTOCOL_VERSION = 'protocolVersion';
+ParamsProperty.PROXYING_FOR = 'proxyingFor';
+ParamsProperty.QUERY = 'query';
+ParamsProperty.RANGE = 'range';
+ParamsProperty.SEARCH_RESULTS = 'searchResults';
+ParamsProperty.STYLE_TYPE = 'styleType';
+ParamsProperty.THREADS = 'threads';
+ParamsProperty.WAVELET_DATA = 'waveletData';
+ParamsProperty.WAVELET_TITLE = 'waveletTitle';

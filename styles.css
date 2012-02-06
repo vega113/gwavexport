@@ -1,0 +1,122 @@
+body {
+	font-family: Arial, Helvetica;
+	font-size: 14px;
+}
+button, fieldset, .top {
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+}
+
+input {
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	border:0;
+	padding:2px;
+	background-color: white;
+}
+
+input[type=text]{
+	width: 200px;
+}
+
+.wrapper{
+	width: 60%;
+	margin-left: auto;
+	margin-right: auto;
+}
+ 
+label.shortcut{
+	text-align: right;
+	vertical-align: bottom;
+	width: 200px;
+}
+ 
+.header{
+	padding-top: 20px;
+	color: #0f76c0
+}
+
+fieldset.left {
+	margin-right: 22px;
+}
+
+fieldset.right {
+	margin-left: 22px;
+}
+
+fieldset.bottom {
+	margin-top: 22px;
+	padding: 12px;
+}
+
+fieldset {
+	margin-top: 22px;
+	background-color: #e5e5e5;
+	border: 0;
+}
+ 
+div.field{
+	margin-top: 10px;
+	width: 100%;
+	vertical-align: bottom;
+	display: inline-block;
+}
+
+#enableInEditModeLabel, #enableHelpPanel {
+	color: #0f76c0;
+}
+
+div.enableInEditMode {
+	margin-bottom: 12px;
+	margin-top:0 !important;
+}
+ 
+div.label{
+	width: 200px;
+	float: left;
+}
+
+button {
+	color: #ffffff;
+	background-image: url(fon_btn.png);
+	background-color: #0f76c0;
+	border: 0;
+}
+
+button:active {
+	background-image: url(fon_pressed_btn.png);
+}
+
+button:disabled {
+	color: gray;
+}
+
+.top {
+	background-image: url(fon_top.png);
+	height: 82px;
+	margin-top: 22px;
+	color: #ffffff;
+}
+
+.logo {
+	margin-top: -16px;
+	float: left;
+	margin-left: 20px;
+}
+
+.logo_text {
+	padding-top: 20px;
+	margin-left: 150px;
+	font-size: 16px;
+}
+
+.patterns {
+	color: #6f6f6f;
+}
+
+a {
+	font-size: 10px;
+	color: #a2a2a2;
+}

@@ -1,0 +1,190 @@
+<html> 
+<head> 
+    <title class="localize" id="optionsPageTitle"></title> 
+    <script type="text/javascript" src="options.js"></script> 
+	<link rel="stylesheet" type="text/css" href="styles.css"/>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<script type="text/javascript">
+	function localize(elements, suffix){
+		var getMessage = chrome.i18n.getMessage;
+		for(var i = 0; element = elements[i]; i++){
+			var id = element.getAttribute('id');
+			if(!id) continue;
+			if(id.match(/Button$/gi))console.log(id);
+			element.innerHTML = getMessage(id) + (suffix ? suffix : '');
+		}
+		//document.getElementById('logoDescr').innerHTML = getMessage("optionsPageLogoDescr");
+	}
+	function translate(){
+		var getClasses = document.getElementsByClassName;
+		localize(document.getElementsByClassName('localize'));
+		localize(document.getElementsByClassName('shortcut'), ':');
+	}
+	</script>
+</head> 
+<body onload="restore_options();translate();"> 
+<div class="top">
+	<img src="logo.png" class="logo"/>
+	<div class="logo_text localize" id="optionsPageLogoDescr"></div>
+</div>
+<div style="display: inline-block;"> 
+	<div style="width:50%; float: left;"> 
+		<fieldset class="left" > 
+			<fieldset> 
+				<legend><strong class="header localize" id="globalOptions"></strong></legend> 
+				<div class="field"> 
+					<div class="label"> 
+						<label class="shortcut" for="collapseShortcut" id="hideAllOption"></label> 
+					</div> 
+					<input type="text" id="collapseShortcut" disabled class="shortcut" /> 
+					<button onclick="startKeyTraking('collapse')" id="collapseButton" disabled></button> 
+				</div> 
+				
+				<div class="field"> 
+					<div class="label"> 
+						<label class="shortcut" for="expandShortcut" id="showAllOption"></label> 
+					</div> 
+					<input type="text" id="expandShortcut" disabled class="shortcut" /> 
+					<button onclick="startKeyTraking('expand')" id="expandButton" disabled></button> 
+				</div> 
+				
+				<div class="field"> 
+					<div class="label"> 
+						<label class="shortcut" for="hideAllInlineRepliesShortcut" id="hideAllInsideOption"></label> 
+					</div> 
+					<input type="text" id="hideAllInlineRepliesShortcut" disabled class="shortcut" /> 
+					<button onclick="startKeyTraking('hideAllInlineReplies')" id="hideAllInlineRepliesButton" disabled></button> 
+				</div> 
+				
+				<div class="field"> 
+					<div class="label"> 
+						<label class="shortcut" for="showAllInlineRepliesShortcut" id="showAllInsideOption"></label> 
+					</div> 
+					<input type="text" id="showAllInlineRepliesShortcut" disabled class="shortcut" /> 
+					<button onclick="startKeyTraking('showAllInlineReplies')" id="showAllInlineRepliesButton" disabled></button> 
+				</div> 
+				
+				<div class="field"> 
+					<div class="label"> 
+						<label class="shortcut" for="copyLinkShortcut" id="copyLinkOption"></label> 
+					</div> 
+					<input type="text" id="copyLinkShortcut" disabled class="shortcut" /> 
+					<button onclick="startKeyTraking('copyLink')" id="copyLinkButton" disabled></button> 
+				</div> 
+				
+				<div class="field"> 
+					<div class="label"> 
+						<label class="shortcut" for="pasteLinkShortcut" id="pasteLinkOption"></label> 
+					</div> 
+					<input type="text" id="pasteLinkShortcut" disabled class="shortcut" />
+					<button onclick="startKeyTraking('pasteLink')" id="pasteLinkButton" disabled></button> 
+				</div> 
+				
+				<div class="field"> 
+					<div class="label"> 
+						<label class="shortcut" for="deleteMessageShortcut" id="deleteMessageOption"></label> 
+					</div> 
+					<input type="text" id="deleteMessageShortcut" disabled class="shortcut" />
+					<button onclick="startKeyTraking('deleteMessage')" id="deleteMessageButton" disabled></button> 
+				</div> 
+				
+				<div class="field"> 
+					<div class="label"> 
+						<label class="shortcut" for="minimizeShortcut" id="minimizeOption"></label> 
+					</div> 
+					<input type="text" id="minimizeShortcut" disabled class="shortcut"> 
+					<button onclick="startKeyTraking('minimize')" id="minimizeButton" disabled></button> 
+				</div> 
+				
+				<div class="field"> 
+					<div class="label"> 
+						<label class="shortcut" for="closeWaveShortcut" id="closeWaveOption"></label> 
+					</div> 
+					<input type="text" id="closeWaveShortcut" disabled class="shortcut"> 
+					<button onclick="startKeyTraking('closeWave')" id="closeWaveButton" disabled></button> 
+				</div> 
+			</fieldset> 
+			<fieldset> 
+				<legend><strong class="header localize" id="copyBlipsOptions"></strong></legend> 
+				<div class="field"> 
+					<div class="label"> 
+						<label class="shortcut" for="copyBlipShortcut" id="copyBlipOption"></label> 
+					</div> 
+					<input type="text" id="copyBlipShortcut" disabled class="shortcut" />
+					<button onclick="startMouseKeyTraking('copyBlip')" id="copyBlipButton" class="localize"></button> 
+				</div> 
+				<div class="field"> 
+					<div class="label"> 
+						<label class="shortcut" for="pasteBlipShortcut" id="pasteBlipOption"></label> 
+					</div> 
+					<input type="text" id="pasteBlipShortcut" disabled class="shortcut" /> 
+					<button onclick="startMouseKeyTraking('pasteBlip')" id="pasteBlipButton" class="localize"></button> 
+				</div> 
+				<div class="field"> 
+					<div class="label"> 
+						<label class="shortcut" for="emptyBufferShortcut" id="emptyBufferOption"></label> 
+					</div> 
+					<input type="text" id="emptyBufferShortcut" disabled class="shortcut" />
+					<button onclick="startMouseKeyTraking('emptyBuffer')" id="emptyBufferButton" class="localize"></button> 
+				</div> 
+			</fieldset> 
+			<fieldset>
+				<!-- <div class="field enableInEditMode"> 
+					<div style="display:inline"> 
+						<label id="enableInEditModeLabel" for="enableInEditMode" class="localize"></label> 
+					</div> 
+					<input type="checkbox" id="enableInEditMode"> 
+				</div> -->
+				<div class="field enableInEditMode"> 
+					<div style="display:inline"> 
+						<label id="enableHelpPanel" for="enableHelpPanel" class="localize"></label> 
+					</div> 
+					<input type="checkbox" id="enableHelpPanelCheckbox"> 
+				</div> 
+			</fieldset> 
+		</fieldset> 
+	</div> 
+	<div style="width: 50%; float: left;">
+		<fieldset class="right">
+			<fieldset> 
+				<legend><strong class="header localize" id="participantOptions"></strong></legend> 
+				<table border="0" id="partTable"></table> 
+				<button onclick="addParticipantTableElements()" id="addPartButton" class="localize"></button> 
+			</fieldset> 
+			<fieldset> 
+				<legend><strong class="header localize" id="searchOptions"></strong></legend> 
+				<table border="0" id="searchTable"></table> 
+				<button onclick="addSearchTableElements()" id="addSearchButton" class="localize"></button> 
+			</fieldset> 
+			<fieldset> 
+				<legend><strong class="header localize" id="notifierOptions"></strong></legend> 
+				<label for="notifier" class="localize" id="notifierLabel"></label> 
+				<input type="text" id="notifier" name="notifier"/> 
+				<button onclick="saveNotifier()" class="localize" id="saveAndEnableNotifierButton"></button> 
+				<div class="patterns">
+					<p class="localize" id="patternsLabel"></p> 
+					<div style="width: 350px;"> 
+						<ul> 
+							<li>[[TODAY]] - <span class="localize" id="todayPattern"></span></li> 
+						</ul> 
+					</div>
+				</div> 
+			</fieldset>
+		</fieldset>
+		<fieldset class="right">
+			<fieldset style="margin-top: 10px;"> 
+			<button onclick="save_options()" id="saveButton" class="localize" style="font-size: 20px;"></button> 
+			<button onclick="restoreDefaults()" id="restore" class="localize" style="margin-left: 80px;"></button>
+			</fieldset> 
+		</fieldset>
+	</div> 
+</div> 
+<div>
+	<fieldset class="bottom">
+		<center> 
+			<a href="https://wave.google.com/wave/?nouacheck&pli=1#restored:wave:googlewave.com%252Fw%252BwmoYqlY4G" class="localize" id="documentationLink"></a> 
+		</center>
+	</fieldset>
+</div> 
+</body> 
+</html>

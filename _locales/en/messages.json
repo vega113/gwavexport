@@ -1,0 +1,227 @@
+{
+   "All": {
+      "message": "All"
+   },
+   "Text": {
+      "message": "Text"
+   },
+   "addPartButton": {
+      "message": "Add participant shortcut"
+   },
+   "addSearchButton": {
+      "message": "Add search shortcut"
+   },
+   "authorizeOnRizzoma": {
+      "message": "Authorize on Rizzoma.com"
+   },
+   "changeButton": {
+      "message": "Change"
+   },
+   "closeWave": {
+      "message": "Close current wave"
+   },
+   "closeWaveOption": {
+      "message": "Close Current Wave Window"
+   },
+   "copyBlipButton": {
+      "message": "Change"
+   },
+   "copyBlipOption": {
+      "message": "Copy message"
+   },
+   "copyBlipsOptions": {
+      "message": "Copy messages options"
+   },
+   "copyLinkOption": {
+      "message": "Copy Link"
+   },
+   "copyPasteBlips": {
+      "message": "Copy\\Paste messages"
+   },
+   "copyPasteLink": {
+      "message": "Copy\\Paste link"
+   },
+   "deleteBlip": {
+      "message": "Delete message"
+   },
+   "deleteConfirmation": {
+      "message": "Are you sure you want to delete selected message?"
+   },
+   "deleteMessageOption": {
+      "message": "Delete Current Message"
+   },
+   "documentationLink": {
+      "message": "Documentation and User Guide"
+   },
+   "editBlip": {
+      "message": "Edit message"
+   },
+   "emptyBuffer": {
+      "message": "Empty copy buffer"
+   },
+   "emptyBufferButton": {
+      "message": "Change"
+   },
+   "emptyBufferOption": {
+      "message": "Empty buffer"
+   },
+   "enableHelpPanel": {
+      "message": "Hide shotcuts help panel"
+   },
+   "enableInEditModeLabel": {
+      "message": "Enable shortcuts in edit mode"
+   },
+   "exportToRizzomaAuthError": {
+      "message": "Please authorize on "
+   },
+   "exportToRizzomaAvailableConfirm": {
+      "message": "This wave will be available for "
+   },
+   "exportToRizzomaInternalError": {
+      "message": "Internal error. Please try again later"
+   },
+   "exportToRizzomaNotificationHeader": {
+      "message": "Export Wave To Rizzoma.com: "
+   },
+   "exportToRizzomaOption": {
+      "message": "Export to Rizzoma.com"
+   },
+   "exportToRizzomaPublicConfirm": {
+      "message": " and will be public"
+   },
+   "exportToRizzomaSourceParseImportError": {
+      "message": "Wrong wave format"
+   },
+   "exportToRizzomaSuccess": {
+      "message": "Wave importing has started. See state on "
+   },
+   "exportToRizzomaWaveAlreadyImportedImportError": {
+      "message": "Wave already imported, see "
+   },
+   "exportToRizzomaWaveImportingInProcessImportError": {
+      "message": "Wave importing is in process, see "
+   },
+   "exportToRizzomaWrongParamError": {
+      "message": "Wrong parameters"
+   },
+   "extDescription": {
+      "message": "This extention simplifies the work with Google Wave greatly, it adds different hot keys like folding all the messages and some other useful options."
+   },
+   "extName": {
+      "message": "WaveShortcuts"
+   },
+   "globalOptions": {
+      "message": "Global options"
+   },
+   "hideAllInsideOption": {
+      "message": "Hide Inline Messages In Current Message"
+   },
+   "hideAllOption": {
+      "message": "Hide All Inline Messages"
+   },
+   "hideShowBlips": {
+      "message": "Hide\\Show all messages"
+   },
+   "hideShowInlineBlips": {
+      "message": "Hide\\Show all messages inside current"
+   },
+   "minimize": {
+      "message": "Minimize windows"
+   },
+   "minimizeOption": {
+      "message": "Minimize All But Wave Windows"
+   },
+   "nextUnreadMessage": {
+      "message": "Next unread message"
+   },
+   "notifierLabel": {
+      "message": "Notifier Search String:"
+   },
+   "notifierOptions": {
+      "message": "Notifier options"
+   },
+   "okButton": {
+      "message": "Ok"
+   },
+   "optionsPageLogoDescr": {
+      "message": "WaveShortcuts is the extension for Google Wave. simplifies the work with Google Wave greatly - adds hot keys for folding all the messages and other useful options."
+   },
+   "optionsPageTitle": {
+      "message": "WaveShortcuts Extension Options"
+   },
+   "participantIdInputLabel": {
+      "message": "email in googlewave.com domain"
+   },
+   "participantOptions": {
+      "message": "Shortcuts For Adding Participants"
+   },
+   "pasteBlipButton": {
+      "message": "Change"
+   },
+   "pasteBlipOption": {
+      "message": "Paste message"
+   },
+   "pasteLinkOption": {
+      "message": "Paste Link"
+   },
+   "patternsLabel": {
+      "message": "Patterns:"
+   },
+   "removeButton": {
+      "message": "Remove"
+   },
+   "requestOperationLimitError": {
+      "message": "Your request exceeded service 2000 operations limit. Try to copy a section of a smaller size."
+   },
+   "requestSizeLimitError": {
+      "message": "Your request exceedes service 1MB limit. Try to copy a section of a smaller size."
+   },
+   "restore": {
+      "message": "Restore to defaults"
+   },
+   "rizzomaLimitExceeded": {
+      "message": "Limit Exceeded"
+   },
+   "rizzomaNotAuthorized": {
+      "message": "Not authorized"
+   },
+   "rizzomaServiceUnavailable": {
+      "message": "Service unavailable"
+   },
+   "saveAndEnableNotifierButton": {
+      "message": "Save and enable notifier"
+   },
+   "saveButton": {
+      "message": "Save settings"
+   },
+   "searchInputLabel": {
+      "message": "search query"
+   },
+   "searchOptions": {
+      "message": "Shortcuts For Searches"
+   },
+   "showAllInsideOption": {
+      "message": "Show Inline Messages In Current Message"
+   },
+   "showAllOption": {
+      "message": "Show All Inline Messages"
+   },
+   "signInOption": {
+      "message": "Sign into Google Wave"
+   },
+   "signOutOption": {
+      "message": "Sign out from Google Wave"
+   },
+   "space": {
+      "message": "Space"
+   },
+   "todayPattern": {
+      "message": "Current System Date (dd.mm)"
+   },
+   "waveletDataMissingError": {
+      "message": "waveletData is missing in server response. It can be happen for two reasons: 1) network error; 2) person who gave access to the extension has now access to the wavelet."
+   },
+   "wrongActiveTab": {
+      "message": "Open Google Wave tab"
+   }
+}

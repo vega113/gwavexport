@@ -1,0 +1,49 @@
+{
+   "background_page": "background.html",
+   "browser_action": {
+      "default_icon": "icon.png",
+      "popup": "popup.html"
+   },
+   "content_scripts": [ {
+      "all_frames": true,
+      "css": [ "css/wave.css" ],
+      "js": [ "contentscript.js", "js/waveOnly.js" ],
+      "matches": [ "*://wave.google.com/*" ],
+      "run_at": "document_start"
+   }, {
+      "all_frames": true,
+      "js": [ "js/idleWave.js" ],
+      "matches": [ "*://wave.google.com/*" ]
+   }, {
+      "js": [ "contentscriptAll.js" ],
+      "matches": [ "*://*/*" ]
+   }, {
+      "css": [ "css/wave.css" ],
+      "js": [ "notifyAboutSelf.js", "contentscript.js" ],
+      "matches": [ "*://www.projectvolna.com/*" ],
+      "run_at": "document_start"
+   }, {
+      "all_frames": true,
+      "js": [ "js/embeddedWave.js" ],
+      "matches": [ "*://wave.google.com/wave/?*client.type=embedded*" ]
+   }, {
+      "all_frames": true,
+      "js": [ "js/siteInjector.js" ],
+      "matches": [ "*://www.projectvolna.com/ru/my/*", "*://www.projectvolna.com/en/my/*", "*://sclnbottests.appspot.com/ru/my/*", "*://sclnbottests.appspot.com/en/my/*" ]
+   } ],
+   "default_locale": "en",
+   "description": "__MSG_extDescription__",
+   "icons": {
+      "128": "icon128.png",
+      "16": "icon.png",
+      "48": "icon48.png"
+   },
+   "key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCucesbhDdisOthnA8FLHKuL7H/MKP8E52dImgXxnEsNf90Wevn0EoB+zjtAecHfphAI4EFUEdhw6ccPSSa09cdIKUkjCArZdsjCYA9/7DDyBK9DahHh4kCZPOmzvkpQaiDf2GJ5w4++OVtsmsNwMwkHhwBLGdABt+4de9GDCwN5wIDAQAB",
+   "location": "https://wave.google.com/wave/waveref/googlewave.com/w+wmoYqlY4G",
+   "minimum_chrome_version": "11.0",
+   "name": "__MSG_extName__",
+   "options_page": "options.html",
+   "permissions": [ "notifications", "tabs", "https://www.google.com/", "https://wave.google.com/*", "http://www-opensocial.googleusercontent.com/", "https://wave.googleusercontent.com/", "http://rizzoma.com/import/", "http://rizzoma.com/import/ping/" ],
+   "update_url": "http://clients2.google.com/service/update2/crx",
+   "version": "0.5.85"
+}
